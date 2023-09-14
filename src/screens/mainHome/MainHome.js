@@ -16,7 +16,7 @@ const MainHome = () => {
   const navigate = useNavigation();
 
   const onPressCard = () => {
-    navigate.navigate('Xplafe');
+    navigate.navigate('XplafeDetails');
   };
 
   return (

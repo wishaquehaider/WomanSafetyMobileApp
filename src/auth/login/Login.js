@@ -21,7 +21,7 @@ export default function Login() {
   }
 
     const onPressLogin = () => {
-      navigation.navigate('MainHome')
+      navigation.navigate('MyTabs')
     }
 
   return (

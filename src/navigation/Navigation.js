@@ -11,6 +11,9 @@ import XplafeDetails from '../screens/xplafeDetails/XplafeDetails';
 import ChatScreen from '../screens/chatScreen/ChatScreen';
 import SafetyDetails from '../screens/safetyDetails/SafetyDetails';
 import Channels from '../screens/channels/Channels';
+import MapScreen from '../screens/map/MapScreen';
+import SafetyScreen from '../screens/safety/SafetyScreen';
+import Profile from '../screens/profile/Profile';
 
 export const Channel = () => {
   return (
@@ -52,23 +55,46 @@ export default function Navigation() {
             component={Singup}
             options={{headerShown: false}}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="MainHome"
             component={MainHome}
             options={{headerShown: false}}
-          />
+          /> */}
           <Stack.Screen
             name="XplafeDetails"
             component={XplafeDetails}
             options={{headerShown: false}}
           />
-          {/* <Stack.Screen name='ChatScreen' component={ChatScreen} options={{headerShown: false}} /> */}
           <Stack.Screen
             name="safetyDetails"
             component={SafetyDetails}
             options={{headerShown: false}}
           />
           {/* new changes */}
+          <Stack.Screen
+            name="MapScreen"
+            component={MapScreen}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name="Channel"
+            component={Channel}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name="SafetyScreen"
+            component={SafetyScreen}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{headerShown: false}}
+          />
+
 
         </Stack.Navigator>
       </NavigationContainer>

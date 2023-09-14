@@ -27,6 +27,7 @@ export default function MyTabs() {
           paddingTop: 15,
         },
       }}>
+      
       <Tab.Screen
         name="MainHome"
         component={MainHome}
@@ -68,7 +69,7 @@ export default function MyTabs() {
       />
 
       <Tab.Screen
-        name="Map"
+        name="MapScreen"
         component={MapScreen}
         options={{
           headerShown: false,
@@ -87,7 +88,7 @@ export default function MyTabs() {
       />
 
       <Tab.Screen
-        name="Book"
+        name="SafetyScreen"
         component={SafetyScreen}
         options={{
           headerShown: false,
