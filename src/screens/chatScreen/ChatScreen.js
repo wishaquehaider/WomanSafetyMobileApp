@@ -3,10 +3,10 @@ import React from 'react';
 import {styles} from './ChatScreenStyle';
 import Icon from 'react-native-vector-icons/Feather'
 import { color } from '../../constants/Colors';
-import MyTabs from '../../navigation/BottomNavigation';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MainHome from '../mainHome/MainHome';
 const Tab = createBottomTabNavigator();
+
 const ChatScreen = () => {
 
   

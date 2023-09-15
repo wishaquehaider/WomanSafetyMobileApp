@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Login from '../auth/login/Login';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 import Singup from '../auth/signUp/Singup';
 import MainHome from '../screens/mainHome/MainHome';
 import { color } from '../constants/Colors';
@@ -32,8 +31,8 @@ export default function MyTabs() {
         name="MainHome"
         component={MainHome}
         options={{
-          tabBarLabel: '',
-          tabBarActiveTintColor: 'red',
+          tabBarLabel: '',  
+          tabBarActiveTintColor: 'red', // its color of lapble using under the icon
           headerShown: false,
           tabBarIcon: ({ focused }) =>
             focused ? (
