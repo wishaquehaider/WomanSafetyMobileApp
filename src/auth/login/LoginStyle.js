@@ -1,5 +1,10 @@
 import { StyleSheet } from "react-native";
 import { color } from "../../constants/Colors";
+import {     widthPixel,
+    heightPixel,
+    fontPixel,
+    pixelSizeVertical,
+    pixelSizeHorizontal, } from "../../constants/responiveStyles";
 
 export const styles =StyleSheet.create({
     main:{
@@ -11,7 +16,7 @@ export const styles =StyleSheet.create({
         position: 'absolute',
         width: '100%',
         top: '40%',
-        paddingHorizontal: 21
+        paddingHorizontal: pixelSizeHorizontal(21)
     },
 
     backgroundTheme: {
@@ -21,20 +26,20 @@ export const styles =StyleSheet.create({
 
     test: {
         color: color.secoundry,
-        fontSize: 36,
+        fontSize: fontPixel(36),
         fontWeight: "700",
-        paddingBottom:30
+        paddingBottom: pixelSizeVertical(30)
     },
 
     inputField: {
-        height: 50,
+        height: heightPixel(50),
         borderColor: color.secoundry,
         borderWidth: 1,
         borderRadius: 10,
-        padding:15,
+        padding: pixelSizeHorizontal(15),
         color: color.secoundry,
-        marginBottom: 10,
-        marginTop: 5
+        marginBottom: pixelSizeVertical(10),
+        marginTop: pixelSizeVertical(5)
     },
 
     mailParent: {
@@ -43,7 +48,7 @@ export const styles =StyleSheet.create({
 
     inputLable: {
         color: color.secoundry,
-        paddingLeft:5
+        paddingLeft: pixelSizeHorizontal(5)
     },
 
     inputParent: {
@@ -52,8 +57,8 @@ export const styles =StyleSheet.create({
     },
 
     iconParent: {
-        width: 45,
-        height: 45,
+        width: widthPixel(45),
+        height: heightPixel(45),
         backgroundColor: color.secoundry,
         display: 'flex',
         justifyContent: 'center',
@@ -66,11 +71,16 @@ export const styles =StyleSheet.create({
         elevation: 7, 
     },
 
+    icon: {
+        width: widthPixel(27),
+        height: heightPixel(27)
+    },
+
     iconsMain: {
         display: 'flex',
         flexDirection: 'row',
         columnGap: 15,
-        paddingTop: 5
+        paddingTop: pixelSizeVertical(5)
     },
 
     forgotText: {
@@ -79,8 +89,8 @@ export const styles =StyleSheet.create({
     },
 
     btn: {
-        width: 144,
-        height: 60,
+        width: widthPixel(144),
+        height: heightPixel(60),
         backgroundColor: color.secoundry,
         borderRadius: 7,
         display: 'flex',
@@ -94,15 +104,16 @@ export const styles =StyleSheet.create({
     },
 
     btnText: {
-        fontSize: 24,
+        fontSize: fontPixel(24),
         fontWeight: '400',
+        color: color.third
     },
 
     lastParent: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop: 40
+        paddingTop: pixelSizeVertical(40)
     },
 
     lastText: {

@@ -5,6 +5,7 @@ import {
   Image,
   Alert,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import {color} from '../../constants/Colors';
@@ -21,7 +22,9 @@ const MainHome = () => {
 
   return (
     <View style={styles.main}>
-      <StatusBar backgroundColor={color.secoundry} />
+    <ScrollView>
+    <View style={styles.main}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={color.secoundry} />
 
       <View style={styles.headingParent}>
         <Text style={styles.mainHeading}>Xplafés Around You</Text>
@@ -107,7 +110,7 @@ const MainHome = () => {
             <Image
               style={styles.arrowIcon}
               source={require('../../assets/arrow.png')}
-            />
+              />
           </View>
         </TouchableOpacity>
       </View>
@@ -116,6 +119,8 @@ const MainHome = () => {
         <View></View>
       </View>
     </View>
+    </ScrollView>
+              </View>
   );
 };
 

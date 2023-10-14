@@ -3,6 +3,7 @@ import React from 'react'
 import { styles } from './ChannelsStyle';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { useNavigation } from '@react-navigation/native';
+import { color } from '../../constants/Colors';
 
 const Channels = () => {
 
@@ -35,7 +36,7 @@ const Channels = () => {
         </View>
         <View style= {styles.chatParent}>
         <Text style={styles.chatPerson}>Lina:</Text>
-        <Text>Hey girls, Wassup!!</Text>
+        <Text style={{color:color.third}}>Hey girls, Wassup!!</Text>
         </View>
         </View>
       </View>
@@ -55,7 +56,7 @@ const Channels = () => {
         </View>
         <View style= {styles.chatParent}>
         <Text style={styles.chatPerson}>Myle:</Text>
-        <Text>Hey girls, Wassup!!</Text>
+        <Text style={{color:color.third}}>Hey girls, Wassup!!</Text>
         </View>
         </View>
       </View>
@@ -75,7 +76,7 @@ const Channels = () => {
         </View>
         <View style= {styles.chatParent}>
         <Text style={styles.chatPerson}>Eliza:</Text>
-        <Text>Hey girls, Wassup!!</Text>
+        <Text style={{color:color.third}}>Hey girls, Wassup!!</Text>
         </View>
         </View>
       </View>

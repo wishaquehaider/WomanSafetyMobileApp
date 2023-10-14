@@ -20,6 +20,7 @@ export default function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: color.primary,
           height: 90,
@@ -46,7 +47,7 @@ export default function MyTabs() {
             ),
         }}
       />
-
+    
       <Tab.Screen
         name="Channel"
         component={Channel}

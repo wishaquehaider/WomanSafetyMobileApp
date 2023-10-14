@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import { color } from '../../constants/Colors';
+import { fontPixel, heightPixel, pixelSizeHorizontal, pixelSizeVertical, widthPixel } from '../../constants/responiveStyles';
 
 export const styles = StyleSheet.create({
     main: {
@@ -17,13 +18,13 @@ export const styles = StyleSheet.create({
       position: 'absolute',
       top: '37%',
       width: '100%',
-      paddingHorizontal: 21
+      paddingHorizontal: pixelSizeHorizontal(21)
     },
 
     headingMain: {
-        fontSize: 36,
+        fontSize: fontPixel(36),
         color: color.secoundry,
-        paddingBottom: 20
+        paddingBottom: pixelSizeVertical(20)
     },
 
 
@@ -32,8 +33,8 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         width: '90%',
         borderRadius: 10,
-        height: 50,
-        padding: 15,
+        height: heightPixel(50),
+        padding: pixelSizeHorizontal(15),
         color: color.secoundry
     },
 
@@ -44,13 +45,13 @@ export const styles = StyleSheet.create({
 
     inputLable: {
         color: color.secoundry,
-        paddingLeft: 5,
-        paddingBottom: 5
+        paddingLeft: pixelSizeHorizontal(5),
+        paddingBottom: pixelSizeVertical(5)
     },
 
     iconParent: {
-        width: 45,
-        height: 45,
+        width: widthPixel(45),
+        height: heightPixel(45),
         backgroundColor: color.secoundry,
         display: 'flex',
         justifyContent: 'center',
@@ -63,29 +64,36 @@ export const styles = StyleSheet.create({
         elevation: 7, 
     },
 
+    icon: {
+        width: widthPixel(27),
+        height: heightPixel(27)
+    },
+
     
     iconsMain: {
         display: 'flex',
         flexDirection: 'row',
         columnGap: 15,
-        paddingTop: 25
+        paddingTop: pixelSizeHorizontal(15)
     },
 
     lastParent: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop: 40
+        paddingTop: pixelSizeVertical(20),
     },
 
     lastText: {
         color: color.secoundry,
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        fontSize: fontPixel(16),
+        fontWeight: '400'
     },
 
     btn: {
-        width: 144,
-        height: 60,
+        width: widthPixel(144),
+        height: heightPixel(60),
         backgroundColor: color.secoundry,
         borderRadius: 7,
         display: 'flex',
@@ -101,7 +109,17 @@ export const styles = StyleSheet.create({
     btnText: {
         fontSize: 24,
         fontWeight: '400',
+        color: color.third
     },
+
+    bgImg: {
+        // height: 900
+    },
+
+    btnText: {
+        fontSize: fontPixel(24),
+        fontWeight: '400'
+    }
 
 
 

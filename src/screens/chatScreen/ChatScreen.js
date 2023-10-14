@@ -1,105 +1,145 @@
-import {View, Text, TextInput, Image, ScrollView} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import React, {useState, useEffect, useCallback, useContext} from 'react';
 import {styles} from './ChatScreenStyle';
-import Icon from 'react-native-vector-icons/Feather'
-import { color } from '../../constants/Colors';
+import Icon from 'react-native-vector-icons/Feather';
+import {color} from '../../constants/Colors';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MainHome from '../mainHome/MainHome';
-const Tab = createBottomTabNavigator();
+import {GiftedChat} from 'react-native-gifted-chat';
+import uuid from 'react-native-uuid';
+import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { fontPixel } from '../../constants/responiveStyles';
+import { useNavigation } from '@react-navigation/native';
+import { DataContext } from '../contextComp/ContextComp';
+import ChatIcon from '../../assets/Group.svg'
+
+
 
 const ChatScreen = () => {
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState(null);
+  const [userDetails ,setUserDetails] = useState(null);
+  const [userName, setUserName] = useState(null);
+  const [userGmailData, setUserGmailData] = useState(null);
+  const [empty, setEmpty] = useState(true)
 
-  
+
+  const navigate = useNavigation()
+  // const id = uuid.v4();
+  // console.log(id);
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const user = await AsyncStorage.getItem('GmailData');
+        const customUser = await AsyncStorage.getItem('userData');
+        setUserGmailData(JSON.parse(user));
+        setUserDetails(JSON.parse(customUser));
+        setLoader(false);
+      } catch (error) {
+        console.log('Error getting data!', error);
+      }
+    };
+    getUser();
+  }, []);
+
+
+
+ 
+
+  const onPressSendMessage = async () => {
+    await firestore()
+      .collection('message')
+      .add({
+        message: message,
+        name: userGmailData ? userGmailData.user.name : userDetails.fullName ,
+        createdAt: new Date(), // Add a timestamp if needed
+      })
+      .then(() => {
+        console.log('Message added!');
+        setEmpty(true)
+        setMessage(''); // Clear the input field after sending the message
+      })
+      .catch(error => {
+        console.error('Error adding message: ', error);
+      });
+  };
+
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('message')
+      .orderBy('createdAt', 'asc')
+      .onSnapshot(querysnapshot => {
+        const allMessages = querysnapshot.docs.map(item => {
+          return { ...item.data(), id: item.id };
+        });
+        setMessages(allMessages);
+      });
+
+    // Unsubscribe when the component unmounts
+    return () => subscriber();
+  }, []);
+
+  console.log('gmail user ',userGmailData);
+
+  const onHandleChange = (data) => {
+       setMessage(data);
+       if(data.length > 0){
+        setEmpty(false)
+       }
+  }
+
   return (
     <View style={styles.main}>
       <ScrollView>
-      <View style={styles.headingParent}>
-        <Icon size={24} color={color.third} name='chevron-left' />
-        <Text style={styles.heading}>Women at Work</Text>
-      </View>
-
-      <View style={styles.chatMain}>
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>naina :</Text>
-          <Text style={styles.chat}>Hello. Have you just arrived at the camp? I’m naina.</Text>
+        <View style={styles.headingParent}>
+          <TouchableOpacity onPress={() => navigate.navigate('Channels')}>
+          <Icon size={fontPixel(24)} color={color.third} name="chevron-left" />
+          </TouchableOpacity>
+          <Text style={styles.heading}>Women at Work</Text>
         </View>
 
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>Nelly :</Text>
-          <Text style={styles.chat}>My name is Nelly. Nice to meet you.</Text>
+        <View style={styles.chatMain}>
+
+          {messages.map((item, i) => {
+            return (
+              <View key={i}>
+                <View style={styles.chatParent}>
+                  <Text style={styles.chatPerson}>{item.name}</Text>
+                  <Text style={styles.chat}>{item.message}</Text>
+                </View>
+              </View>
+            );
+          })}
         </View>
 
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>naina :</Text>
-          <Text style={styles.chat}>Oh, OK… Where are you from?</Text>
+      </ScrollView>
+        <View style={styles.inputBoxParent}>
+          <TextInput
+            onChangeText={text => onHandleChange(text)}
+            style={styles.inputBox}
+            value={message}
+            placeholder='Message'
+            multiline={true} // Allow multiple lines
+            numberOfLines={1} // Set the number of visible lines you want
+            textAlignVertical="top"
+          />
+          <TouchableOpacity
+            disabled={empty}
+            style={styles.calenderImg}
+            onPress={onPressSendMessage}>
+            {/* <Image source={require('../../assets/calender.png')} /> */}
+            <ChatIcon  />
+          </TouchableOpacity>
         </View>
-
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>Nelly :</Text>
-          <Text style={styles.chat}>I’m from Greece, but I’ve lived in this area for a long time. You?</Text>
-        </View>
-
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>naina :</Text>
-          <Text style={styles.chat}>I’m from the USA. I’m here on holidays.</Text>
-        </View>
-
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>Nelly :</Text>
-          <Text style={styles.chat}>Are you from a big family?</Text>
-        </View>
-
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>naina :</Text>
-          <Text style={styles.chat}>No, there are just five of us- me, my sister, my brother and my parents. What about you?</Text>
-        </View>
-        
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>Nelly :</Text>
-          <Text style={styles.chat}>I’ve got two sisters.</Text>
-        </View>
-        
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>naina :</Text>
-          <Text style={styles.chat}>Oh, that’s nice. What do you usually do in your free time? Do you have any hobbies?</Text>
-        </View>
-        
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>Nelly :</Text>
-          <Text style={styles.chat}>I love hanging out with my friends or stay at home and read a good book. I don’t have a lot of hobbies. I enjoy playing volleyball… What about you?</Text>
-        </View>
-        
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>naina :</Text>
-          <Text style={styles.chat}> I love it, too…What’s your favourite subject?</Text>
-        </View>
-        
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>Nelly :</Text>
-          <Text style={styles.chat}>I like Biology. I love learning about the Environment</Text>
-        </View>
-        
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>naina :</Text>
-          <Text style={styles.chat}>Me too. I think we are going to be great friends!. What about you?</Text>
-        </View>
-        
-        <View style={styles.chatParent}>
-          <Text style={styles.chatPerson}>Nelly :</Text>
-          <Text style={styles.chat}>So do I!</Text>
-        </View>
-         
-      </View>
-
-      <View style={styles.inputBoxParent}>
-        <TextInput style={styles.inputBox} />
-        <Image style={styles.calenderImg} source={require('../../assets/calender.png')} />
-      </View>
-
-      
-
-   
-    </ScrollView>
     </View>
   );
 };

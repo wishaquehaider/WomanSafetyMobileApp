@@ -1,6 +1,11 @@
 import { color } from "../../constants/Colors";
 
 const { StyleSheet } = require("react-native");
+import {     widthPixel,
+    heightPixel,
+    fontPixel,
+    pixelSizeVertical,
+    pixelSizeHorizontal, } from "../../constants/responiveStyles";
 
 export const styles = StyleSheet.create({
 
@@ -10,14 +15,14 @@ export const styles = StyleSheet.create({
     },
 
     heading: {
-        fontSize: 30,
+        fontSize: fontPixel(30),
         fontWeight: '600',
         color: color.third
     },
 
     circleProfile: {
-        width: 194,
-        height: 194,
+        width: widthPixel(194),
+        height:  widthPixel(194),
         backgroundColor: color.fourth,
         borderRadius: 100,
         display: 'flex',
@@ -28,7 +33,8 @@ export const styles = StyleSheet.create({
 
     profileImage: {
         width: 152,
-        height: 152
+        height: 152,
+        borderRadius: 150
     },
 
     profileParent: {
@@ -38,8 +44,8 @@ export const styles = StyleSheet.create({
     },
 
     editParent: {
-        width: 35,
-        height: 35,
+        width: widthPixel(35),
+        height:  widthPixel(35),
         backgroundColor: '#ffffff',
         borderRadius: 20,
         display: 'flex',
@@ -51,7 +57,7 @@ export const styles = StyleSheet.create({
     },
 
     cardParent: {
-        paddingHorizontal: 20,
+        paddingHorizontal: pixelSizeHorizontal(20),
         display: 'flex',
         rowGap: 30
     },
@@ -64,12 +70,12 @@ export const styles = StyleSheet.create({
         elevation: 9, 
         borderRadius: 12,
         display: 'flex',
-        paddingHorizontal: 20,
-        paddingVertical: 20
+        paddingHorizontal: pixelSizeHorizontal(20),
+        paddingVertical: pixelSizeVertical(20)
     },
 
     nameStyle: {
-        fontSize: 18,
+        fontSize: fontPixel(18),
         fontWeight: '700',
         color: color.third,
         paddingLeft: 5,
@@ -77,15 +83,15 @@ export const styles = StyleSheet.create({
     },
 
     cardUserName: {
-        fontSize: 20,
+        fontSize: fontPixel(20),
         fontWeight: '600',
         color: color.third,
-        textAlign: 'center'
+        textAlign: 'center',
     },
 
     btn: {
-        width: 120,
-        height: 60,
+        width: widthPixel(120),
+        height: heightPixel(60),
         backgroundColor: color.primary,
         borderRadius: 7,
         display: 'flex',
@@ -97,12 +103,12 @@ export const styles = StyleSheet.create({
         shadowRadius: 50,
         elevation: 7,
         position: 'absolute',
-        bottom: 40,
-        right: 20
+        bottom: 20,
+        right: 27,
     },
 
     btnText: {
-        fontSize: 20,
+        fontSize: fontPixel(20),
         fontWeight: '700',
         color: color.secoundry
     },

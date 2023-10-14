@@ -1,19 +1,21 @@
 import {color} from '../../constants/Colors';
+import { fontPixel, heightPixel, pixelSizeHorizontal, pixelSizeVertical, widthPixel } from '../../constants/responiveStyles';
 
 const {StyleSheet} = require('react-native');
+
 
 export const styles = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: color.secoundry,
-    paddingHorizontal: 20,
+    paddingHorizontal: pixelSizeHorizontal(20),
   },
   calender: {},
 
   calenderParent: {
-    height: 400,
+    height: heightPixel(400),
     backgroundColor: color.secoundry,
-    paddingHorizontal: 20,
+    paddingHorizontal: pixelSizeHorizontal(20),
   },
 
   dateStartingParent: {
@@ -22,46 +24,57 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 175,
+    width: widthPixel(175),
     borderRadius: 15,
-    paddingHorizontal: 10,
-    paddingVertical: 15,
+    paddingHorizontal: pixelSizeHorizontal(10),
+    paddingVertical: pixelSizeVertical(15),
   },
 
   startingDate: {
     fontSize: 13,
     fontWeight: '700',
+    color: color.third
   },
 
   calenderMain: {
     display: 'flex',
     flexDirection: 'row',
-    columnGap: 10,
+    justifyContent: 'space-between',
+    // columnGap: 10,
+    // width: '100%'
   },
 
+  // firstPortion: {
+  //   width: 100
+  // },
+
+  // secondPortion: {
+  //   width: 100
+  // },
+
   fromText: {
-    fontSize: 16,
+    fontSize: fontPixel(16),
     fontWeight: '400',
-    paddingLeft: 10,
+    paddingLeft: pixelSizeHorizontal(16),
     color: color.third,
-    paddingBottom: 5,
+    paddingBottom: pixelSizeVertical(5),
   },
 
   toStyle: {
     textAlign: 'right',
-    fontSize: 16,
+    fontSize: fontPixel(16),
     fontWeight: '400',
-    paddingRight: 10,
+    paddingRight: pixelSizeHorizontal(10),
     color: color.third,
-    paddingBottom: 5,
+    paddingBottom: pixelSizeVertical(5),
   },
 
   timeText: {
-    fontSize: 20,
+    fontSize: fontPixel(20),
     fontWeight: '400',
     color: color.third,
-    paddingLeft: 5,
-    paddingBottom: 10,
+    paddingLeft: pixelSizeHorizontal(5),
+    paddingBottom: pixelSizeVertical(10),
   },
 
   locationParent: {
@@ -69,15 +82,15 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#ffffff',
-    paddingHorizontal: 30,
-    paddingVertical: 10,
+    paddingHorizontal: pixelSizeHorizontal(30),
+    paddingVertical: pixelSizeVertical(10),
     alignItems: 'center',
     borderRadius: 15,
     marginBottom: 10,
   },
 
   heading: {
-    fontSize: 24,
+    fontSize: fontPixel(24),
     flex: 1,
     fontWeight: '400',
     color: color.third,
@@ -88,52 +101,53 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: pixelSizeVertical(20),
   },
 
   messageText: {
-    fontSize: 20,
+    fontSize: fontPixel(20),
     fontWeight: '400',
     color: color.third,
-    paddingVertical: 10,
+    paddingVertical: pixelSizeVertical(10),
   },
 
   messageParent: {
     backgroundColor: 'white',
-    height: 375,
+    height: heightPixel(375),
     borderRadius: 17,
-    paddingHorizontal: 30,
-    paddingVertical: 40,
+    paddingHorizontal: pixelSizeHorizontal(30),
+    paddingVertical: pixelSizeVertical(40),
   },
 
   textContent: {
-    fontSize: 18,
+    fontSize: fontPixel(18),
     fontWeight: '400',
     lineHeight: 24,
+    color: color.third
   },
 
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: pixelSizeVertical(20),
   },
   btnMain: {
     backgroundColor: color.primary,
-    width: 250,
+    width: widthPixel(250),
     borderRadius: 5,
-    paddingVertical: 12,
+    paddingVertical: pixelSizeVertical(12),
   },
   btnText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: fontPixel(24),
     fontWeight: '400',
   },
 
   doneBtn: {
     backgroundColor: color.primary,
-    width: 100,
-    height: 40,
+    width: widthPixel(100),
+    height: heightPixel(40),
     borderRadius: 5,
     display: 'flex',
     justifyContent: 'center',
@@ -141,13 +155,13 @@ export const styles = StyleSheet.create({
   },
 
   doneTextBtn: {
-    fontSize: 14,
+    fontSize: fontPixel(14),
     fontWeight: '700',
     color: '#ffffff',
   },
 
   cancleTextBtn: {
-    fontSize: 14,
+    fontSize: fontPixel(14),
     fontWeight: '700',
     color: color.third,
   },
@@ -160,7 +174,7 @@ export const styles = StyleSheet.create({
   },
 
   notification: {
-    paddingVertical: 30,
+    paddingVertical: pixelSizeVertical(30),
     backgroundColor: color.secoundry,
     borderRadius: 22,
     display: 'flex',
@@ -170,15 +184,15 @@ export const styles = StyleSheet.create({
   },
 
   notificationText: {
-    fontSize: 24,
+    fontSize: fontPixel(24),
     fontWeight: '700',
     color: color.third,
   },
 
   okButton: {
     backgroundColor: color.primary,
-    width: 55,
-    height: 28,
+    width: widthPixel(55),
+    height: heightPixel(28),
     borderRadius: 10,
     alignSelf: 'flex-end',
     marginRight: 20
@@ -186,8 +200,12 @@ export const styles = StyleSheet.create({
 
   okBtnText: {
     color: '#ffffff',
-    fontSize: 18,
+    fontSize: fontPixel(18),
     fontWeight: '700',
     textAlign: 'center'
+  },
+
+  text: {
+    color: color.third
   }
 });

@@ -1,12 +1,19 @@
 import {StyleSheet} from 'react-native'
 import { color } from '../../constants/Colors'
+// import {pixelSizeVertical} from "./"
+import {    widthPixel,
+    heightPixel,
+    fontPixel,
+    pixelSizeVertical,
+    pixelSizeHorizontal, } from '../../constants/responiveStyles'
 
 export const styles = StyleSheet.create({
 
     main: {
         backgroundColor: color.secoundry,
         flex: 1,
-        rowGap: 40
+        rowGap: 40,
+        
     },
 
     headingParent: {
@@ -16,7 +23,7 @@ export const styles = StyleSheet.create({
       },
 
       mainHeading: {
-        fontSize: 33, 
+        fontSize:fontPixel(33), 
         fontWeight: 'bold',
         textAlign: 'center',
         maxWidth: 250,
@@ -47,19 +54,19 @@ export const styles = StyleSheet.create({
 
     cardsMain: {
         width: '100%',
-        paddingHorizontal: 30,
+        paddingHorizontal: pixelSizeHorizontal(30),
         display: 'flex',
         rowGap: 15
     },
 
     cardHeading: {
-        fontSize: 24,
+        fontSize: fontPixel(24),
         color: color.primary,
         fontWeight: '600'
     },
 
     cardText: {
-        fontSize: 14,
+        fontSize: fontPixel(14),
         fontWeight: '400',
         color: color.third
     },

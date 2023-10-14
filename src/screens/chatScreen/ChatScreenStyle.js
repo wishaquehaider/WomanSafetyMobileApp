@@ -1,4 +1,5 @@
 import {color} from '../../constants/Colors';
+import { pixelSizeHorizontal } from '../../constants/responiveStyles';
 
 const {StyleSheet} = require('react-native');
 
@@ -57,8 +58,12 @@ export const styles = StyleSheet.create({
 
   inputBox: {
     backgroundColor: '#ffffff',
-    position: 'relative',
+    // position: 'relative',
     borderRadius: 10,
+    paddingRight: pixelSizeHorizontal(50),
+    paddingLeft: pixelSizeHorizontal(10),
+    color: color.third,
+    lineHeight: 20
   },
 
   calenderImg: {
@@ -67,11 +72,18 @@ export const styles = StyleSheet.create({
     top: 12,
   },
 
+  message: {
+    color: color.third
+  },
+
   bottom: {
     paddingTop: 40,
   },
 
   inputBoxParent: {
-    paddingHorizontal: 20
+    paddingHorizontal: 20, 
+    position: 'relative',
+    bottom: 10
+ 
   }
 });

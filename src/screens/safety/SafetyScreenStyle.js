@@ -1,6 +1,11 @@
 import { color } from "../../constants/Colors";
 
 const { StyleSheet } = require("react-native");
+import { widthPixel,
+    heightPixel,
+    fontPixel,
+    pixelSizeVertical,
+    pixelSizeHorizontal, } from "../../constants/responiveStyles";
 
 export const styles = StyleSheet.create({
     main: {
@@ -8,10 +13,15 @@ export const styles = StyleSheet.create({
         flex: 1
     },
     heading: {
-        fontSize: 30,
+        fontSize: fontPixel(30),
         fontWeight: '600',
         color: color.third,
         textAlign: 'center'
+    },
+
+    imgLogo: {
+        width: fontPixel(100),
+        height: fontPixel(100)
     },
 
     card: {
@@ -25,16 +35,16 @@ export const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: "space-between",
-        paddingVertical: 20,
-        paddingLeft: 40,
-        paddingRight: 20,
+        paddingVertical: pixelSizeVertical(20),
+        paddingLeft: pixelSizeHorizontal(40),
+        paddingRight: pixelSizeHorizontal(20),
         borderRadius: 12,
         alignItems: 'center'
     },
 
     cardHeading: {
         color: 'white',
-        fontSize: 25,
+        fontSize: fontPixel(25),
         fontWeight: '700'
     },
 

@@ -13,100 +13,71 @@ import {color} from '../../constants/Colors';
 import {styles} from './XplafeDetailsStyle';
 import Icon from 'react-native-vector-icons/Feather';
 import Modal from 'react-native-modal';
+import { fontPixel } from '../../constants/responiveStyles';
+import { useNavigation } from '@react-navigation/native';
 
 const XplafeDetails = () => {
+  const [selectedSecond, setSelectedSecond] = useState('');
   const [selected, setSelected] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
-  const [isModalVisibleNotification, setModalVisibleNotification] =
-    useState(false);
+  const [isModalVisibleSecond, setModalVisibleSecond] = useState(false);
+  const [isModalVisibleNotification, setModalVisibleNotification] =useState(false);
+  const navigate = useNavigation();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const toggleModalNotification = () => {
+  const toggleModalSecond = () => {
+    setModalVisibleSecond(!isModalVisibleSecond);
+  };
+
+  
+
+  const toggleModalNotification =  () => {
     setModalVisibleNotification(!isModalVisibleNotification);
   };
+
+  const toggleModalNotificationTwo =  () => {
+    setModalVisibleNotification(!isModalVisibleNotification);
+    navigate.navigate('MyTabs')
+  };
+
+
+
+  console.log('selected date is here', selected);
+  console.log('selected second date is here', selectedSecond);
+
 
   return (
     <View style={styles.main}>
       <ScrollView>
       <View style={styles.headingParent}>
-        <Icon size={24} color={color.third} name="chevron-left" />
+        <TouchableOpacity onPress={() => navigate.navigate('MyTabs')}>
+        <Icon size={fontPixel(24)} color={color.third} name="chevron-left" />
+        </TouchableOpacity>
         <Text style={styles.heading}>Nearby Xplafé</Text>
       </View>
       <View style={styles.locationParent}>
-        <Text>Schindler’s Street, New York</Text>
+        <Text style={styles.text}>Schindler’s Street, New York</Text>
         <Image source={require('../../assets/location.png')} />
       </View>
 
       <Text style={styles.timeText}>Time</Text>
       <View style={styles.calenderMain}>
-        <View>
+        <View style={styles.firstPortion}>
           <Text style={styles.fromText}>From</Text>
-          <View style={styles.dateStartingParent}>
-            <Text style={styles.startingDate}>21/2 /2021 / 7:15</Text>
+          {/* <View style={styles.dateStartingParent}>
+            <Text style={styles.startingDate}>{selected}</Text>
             <Icon
               onPress={toggleModal}
               size={24}
               color={color.third}
               name="calendar"
             />
-          </View>
+          </View> */}
           <View>
-            <Modal isVisible={isModalVisible}>
-              <View style={styles.calenderParent}>
-                <Calendar
-                  style={styles.calender}
-                  onDayPress={day => {
-                    setSelected(day.dateString);
-                  }}
-                  theme={{
-                    backgroundColor: color.secoundry,
-                    agendaDayNumColor: color.primary,
-                    calendarBackground: color.secoundry,
-                    monthTextColor: 'black',
-                    selectedDayBackgroundColor: color.primary,
-                    textDisabledColor: 'gray',
-                    todayButtonFontSize: 33,
-                    todayButtonTextColor: color.primary,
-                    todayTextColor: color.primary,
-                    arrowColor: color.primary,
-                    dayTextColor: 'black',
-                    agendaTodayColor: 'black',
-                    textMonthColor: 'black',
-                    selectedDotColor: 'red',
-                  }}
-                  markedDates={{
-                    [selected]: {
-                      selected: true,
-                      disableTouchEvent: true,
-                      selectedDotColor: 'orange',
-                    },
-                  }}
-                />
-                <TouchableOpacity>
-                  <Text>ook</Text>
-                </TouchableOpacity>
-              </View>
-            </Modal>
-          </View>
-        </View>
-
-        <View>
-          <Text style={styles.toStyle}> To</Text>
-          <View style={styles.dateStartingParent}>
-            <Text style={styles.startingDate}>21/2 /2021 / 7:15</Text>
-            <Icon
-              title="Hide modal"
-              onPress={toggleModal}
-              size={24}
-              color={color.third}
-              name="calendar"
-            />
-          </View>
-          <View>
-            <Modal isVisible={isModalVisible}>
+          <Modal isVisible={isModalVisible}>
               <View style={styles.calenderParent}>
                 <Calendar
                   style={styles.calender}
@@ -151,6 +122,89 @@ const XplafeDetails = () => {
               </View>
             </Modal>
           </View>
+
+          <View style={styles.dateStartingParent}>
+            <Text style={styles.startingDate}>{selected}</Text>
+            <Icon
+              onPress={toggleModal}
+              size={24}
+              color={color.third}
+              name="calendar"
+            />
+          </View>
+        </View>
+
+        <View style={styles.secondPortion}>
+          <Text style={styles.toStyle}> To</Text>
+          {/* <View style={styles.dateStartingParent}>
+            <Text style={styles.startingDate}>{selectedSecond}</Text>
+            <Icon
+              title="Hide modal"
+              onPress={toggleModal}
+              size={24}
+              color={color.third}
+              name="calendar"
+              
+            />
+          </View> */}
+
+          <View>
+            <Modal isVisible={isModalVisibleSecond}>
+              <View style={styles.calenderParent}>
+                <Calendar
+                  style={styles.calender}
+                  onDayPress={day => {
+                    setSelectedSecond(day.dateString);
+                  }}
+                  theme={{
+                    backgroundColor: color.secoundry,
+                    agendaDayNumColor: color.primary,
+                    calendarBackground: color.secoundry,
+                    monthTextColor: 'black',
+                    selectedDayBackgroundColor: color.primary,
+                    textDisabledColor: 'gray',
+                    todayButtonFontSize: 33,
+                    todayButtonTextColor: color.primary,
+                    todayTextColor: color.primary,
+                    arrowColor: color.primary,
+                    dayTextColor: 'black',
+                    agendaTodayColor: 'black',
+                    textMonthColor: 'black',
+                    selectedDotColor: 'red',
+                  }}
+                  markedDates={{
+                    [selectedSecond]: {
+                      selected: true,
+                      disableTouchEvent: true,
+                      selectedDotColor: 'orange',
+                    },
+                  }}
+                />
+                <View style={styles.btnParent}>
+                  <TouchableOpacity title="Show modal" onPress={toggleModalSecond}>
+                    <Text style={styles.cancleTextBtn}>Cancle</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    title="Show modal"
+                    onPress={toggleModalSecond}
+                    style={styles.doneBtn}>
+                    <Text style={styles.doneTextBtn}>Done</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
+          </View>
+
+          <View style={styles.dateStartingParent}>
+            <Text style={styles.startingDate}>{selectedSecond}</Text>
+            <Icon
+              title="Hide modal"
+              onPress={toggleModalSecond}
+              size={24}
+              color={color.third}
+              name="calendar"
+            />
+          </View>
         </View>
       </View>
 
@@ -170,7 +224,7 @@ const XplafeDetails = () => {
         <Modal isVisible={isModalVisibleNotification}>
           <View style={styles.notification}>
             <Text style={styles.notificationText}>Notification Sent!!</Text>
-            <TouchableOpacity onPress={toggleModalNotification} style={styles.okButton}>
+            <TouchableOpacity onPress={toggleModalNotificationTwo} style={styles.okButton}>
               <Text style={styles.okBtnText}>Ok</Text>
             </TouchableOpacity>
           </View>
