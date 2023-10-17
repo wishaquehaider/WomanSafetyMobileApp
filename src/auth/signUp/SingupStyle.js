@@ -82,6 +82,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingTop: pixelSizeVertical(20),
+        marginBottom: 42,
+        paddingBottom: 23
     },
 
     lastText: {
@@ -104,6 +106,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 50,
         elevation: 7, 
+        color: 'black',
     },
 
     btnText: {
@@ -113,12 +116,13 @@ export const styles = StyleSheet.create({
     },
 
     bgImg: {
-        // height: 900
+        height: heightPixel(900)
     },
 
     btnText: {
         fontSize: fontPixel(24),
-        fontWeight: '400'
+        fontWeight: '400',
+        color: 'black'
     }
 
 

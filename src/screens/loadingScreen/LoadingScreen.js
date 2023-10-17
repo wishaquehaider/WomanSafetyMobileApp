@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, Image, StatusBar } from 'react-native';
 import { color } from '../../constants/Colors';
+import WomanLogo from '../../assets/womanLogo.svg'
 
 const LoadingScreen = () => {
   return (
@@ -8,7 +9,8 @@ const LoadingScreen = () => {
       <StatusBar backgroundColor={color.primary} />
       {/* <ActivityIndicator size="large" color="#007AFF" />
       <Text>Loading...</Text> */}
-      <Image style={[styles.Image, {tintColor: 'white'}]} source={require('../../assets/womanLogo.png')}/>
+      <WomanLogo style={{...styles.Image, fill: 'white'}}  />
+      {/* <Image source={require('../../assets/womanLogo.png')}/> */}
       <Text style={styles.text}>Woman's Sefety</Text>
     </View>
   );
@@ -24,7 +26,8 @@ const styles = StyleSheet.create({
   Image: {
     width: 165,
     height: 165,
-    marginBottom: 20
+    marginBottom: 20,
+    color: 'white',
   },
 
   text: {

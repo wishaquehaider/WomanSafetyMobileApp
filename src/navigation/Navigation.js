@@ -79,6 +79,8 @@ const Stack = createNativeStackNavigator();
 
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState('');
+  const [gmailToken, setGmailToken] = useState(null)
+  
   // const [googleid, setgoogleid] = useState('');
   
   useEffect(() => {
@@ -92,7 +94,7 @@ const Stack = createNativeStackNavigator();
         console.log("token=www=", storedToken);
         // console.log("iddddd==", googleId);
         setToken(storedToken);
-        setToken(gmailToken)
+        setGmailToken(gmailToken)
         // setgoogleid(googleId)
       } catch (error) {
         console.error('Error checking login status: ', error);
@@ -118,7 +120,7 @@ const Stack = createNativeStackNavigator();
 
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={token   ?  'MyTabs' : 'login'  }>
+        <Stack.Navigator initialRouteName={token || gmailToken   ?  'MyTabs' : 'login'  }>
           <Stack.Screen
             name="Login"
             component={Login}

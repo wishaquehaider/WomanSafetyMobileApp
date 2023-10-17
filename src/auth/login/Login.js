@@ -163,13 +163,23 @@ export default function Login() {
          password: formData.password
        })
  
-      })
+      });
+
+      const userResponce = await responce.json();
+
+
+      console.log(responce.ok);
+      if(responce.ok== false){
+
+        Toast.error(userResponce.message)
+      }
+
+
 
       if(responce.ok){
-
-        const userResponce = await responce.json();
+        
         const token = userResponce.token;
-
+        
         console.log('userResponce', userResponce);
 
         await AsyncStorage.setItem('userData',JSON.stringify(userResponce.data.isUserPresent) )
@@ -180,7 +190,6 @@ export default function Login() {
         try{
           await AsyncStorage.setItem('myToken', token)
         }catch(error){
-      Toast.error('err')
            console.log('data storing error', error);
         }
   
@@ -189,8 +198,7 @@ export default function Login() {
         navigate.navigate('MyTabs');
       }
     }catch(err){
-      Toast.error('err')
-       console.log('error',err);
+       console.log('error is here two',err);
     }
      
   }

@@ -15,6 +15,8 @@ import {color} from '../../constants/Colors';
 import {useNavigation} from '@react-navigation/native';
 import * as Yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Google from '../../assets/google.svg'
+import Facebook from '../../assets/facebook.svg'
 
 const Singup = () => {
   const navigate = useNavigation();
@@ -87,19 +89,25 @@ const Singup = () => {
 
     
     let res = await responce.json();
+
+    if(res.ok == false){
+      Toast.error(res.message)
+    }
+    console.log('cked gurrenty',res);
     const token = res.token;
     const userData = JSON.stringify(res.user);
 
     if (responce.ok) {
       setLoader(false)
 
-      Toast.success('Signup Successfully!')
+      Toast.success(res.message)
 
       try {
         // await AsyncStorage.setItem('mytoken',token);
         // await AsyncStorage.setItem('userData',userData);
       } catch (error) {
         setLoader(false)
+        Toast
         console.error('Error storing data:', error);
       }
     
@@ -107,7 +115,7 @@ const Singup = () => {
       navigate.navigate('Login');
     } else {
       setLoader(false)
-      console.error('FINALLY==>',responce.status);
+      Toast.error(res.message)
     }
   };
 
@@ -167,14 +175,14 @@ const Singup = () => {
 
           <View style={styles.iconsMain}>
             <TouchableOpacity style={styles.iconParent}>
-              <Image style={styles.icon} source={require('../../assets/google.png')} />
+              <Google style={styles.icon} />
+              {/* <Image  source={require('../../assets/google.png')} /> */}
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconParent}>
-              <Image style={styles.icon} source={require('../../assets/facebook.png')} />
+              <Facebook style={styles.icon} />
+              {/* <Image  source={require('../../assets/facebook.png')} /> */}
             </TouchableOpacity>
-            <TouchableOpacity style={styles.iconParent}>
-              <Image style={styles.icon} source={require('../../assets/apple.png')} />
-            </TouchableOpacity>
+         
           </View>
 
           <View style={styles.lastParent}>
@@ -187,11 +195,9 @@ const Singup = () => {
               onPress={onPressRegister}
               style={styles.btn}>
               <Text style={styles.btnText}>
-                {' '}
+                
                 {loader ? (
-                  <Text>
                     <ActivityIndicator size="large" color={color.primary} />
-                  </Text>
                 ) : (
                   <Text style={styles.btnText}>Register</Text>
                   
