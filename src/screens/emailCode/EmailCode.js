@@ -1,5 +1,4 @@
 import {
-  Button,
   StyleSheet,
   Text,
   View,
@@ -64,17 +63,16 @@ const EmailCode = () => {
       setLoader(true);
       userTokenSave(codes);
 
-      const responce = await fetch('https://woman-safety-server-crup.vercel.app/api/sendCode', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify({
-          verifyToken: codes,
-        }),
-      });
-
-      console.log('y', responce);
-
-      console.log('y', await responce.json());
+      const responce = await fetch(
+        'https://woman-safety-server-crup.vercel.app/api/sendCode',
+        {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify({
+            verifyToken: codes,
+          }),
+        },
+      );
 
       if (responce.ok) {
         setLoader(false);
@@ -87,10 +85,10 @@ const EmailCode = () => {
         errors[e.path] = e.message;
       });
       setValidationErrors(errors);
-    }finally{
-      setLoader(false)
+    } finally {
+      setLoader(false);
     }
-  }
+  };
 
   const handleFieldFocus = () => {
     setValidationErrors('');
@@ -99,7 +97,7 @@ const EmailCode = () => {
   return (
     <ScrollView style={styles.main}>
       <TouchableOpacity
-      onPress={() => navigation.navigate('ForgotPassword')}
+        onPress={() => navigation.navigate('ForgotPassword')}
         style={{
           display: 'flex',
           flexDirection: 'row',
@@ -126,7 +124,6 @@ const EmailCode = () => {
             placeholderTextColor="#180E25"
             placeholder="0"
             value={code1}
-            // keyboardType="numeric"
             maxLength={1}
             onChangeText={text => {
               setCode1(text);
@@ -144,7 +141,6 @@ const EmailCode = () => {
               setCode2(text);
               handleCodeChange(text, code3Ref);
             }}
-            // keyboardType="numeric"
             maxLength={1}
           />
           <TextInput
@@ -157,7 +153,6 @@ const EmailCode = () => {
               setCode3(text);
               handleCodeChange(text, code4Ref);
             }}
-            // keyboardType="numeric"
             maxLength={1}
           />
           <TextInput
@@ -167,7 +162,6 @@ const EmailCode = () => {
             placeholder="0"
             value={code4}
             onChangeText={text => setCode4(text)}
-            // keyboardType= "numeric"
             maxLength={1}
           />
         </View>

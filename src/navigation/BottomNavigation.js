@@ -1,21 +1,15 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Login from '../auth/login/Login';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Singup from '../auth/signUp/Singup';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MainHome from '../screens/mainHome/MainHome';
-import { color } from '../constants/Colors';
+import {color} from '../constants/Colors';
 import Icon from 'react-native-vector-icons/Feather';
-import { View } from 'react-native';
-import { styles } from './BottomNavigationStyle';
-import Channels from '../screens/channels/Channels';
+import {View} from 'react-native';
+import {styles} from './BottomNavigationStyle';
 import MapScreen from '../screens/map/MapScreen';
 import SafetyScreen from '../screens/safety/SafetyScreen';
 import Profile from '../screens/profile/Profile';
-import ChatScreen from '../screens/chatScreen/ChatScreen';
 const Tab = createBottomTabNavigator();
 
-
-import { Channel } from './Navigation';
+import {Channel} from './Navigation';
 export default function MyTabs() {
   return (
     <Tab.Navigator
@@ -27,15 +21,14 @@ export default function MyTabs() {
           paddingTop: 15,
         },
       }}>
-      
       <Tab.Screen
         name="MainHome"
         component={MainHome}
         options={{
-          tabBarLabel: '',  
+          tabBarLabel: '',
           tabBarActiveTintColor: 'red', // its color of lapble using under the icon
           headerShown: false,
-          tabBarIcon: ({ focused }) =>
+          tabBarIcon: ({focused}) =>
             focused ? (
               <View style={styles.iconParent}>
                 <Icon name="archive" size={28} color={color.primary} />
@@ -47,7 +40,7 @@ export default function MyTabs() {
             ),
         }}
       />
-    
+
       <Tab.Screen
         name="Channel"
         component={Channel}
@@ -55,7 +48,7 @@ export default function MyTabs() {
           tabBarLabel: '',
           tabBarActiveTintColor: 'red',
           headerShown: false,
-          tabBarIcon: ({ focused }) =>
+          tabBarIcon: ({focused}) =>
             focused ? (
               <View style={styles.iconParent}>
                 <Icon name="grid" size={30} color={color.primary} />
@@ -74,7 +67,7 @@ export default function MyTabs() {
         options={{
           headerShown: false,
           tabBarLabel: '',
-          tabBarIcon: ({ focused }) =>
+          tabBarIcon: ({focused}) =>
             focused ? (
               <View style={styles.iconParent}>
                 <Icon name="map" size={28} color={color.primary} />
@@ -93,7 +86,7 @@ export default function MyTabs() {
         options={{
           headerShown: false,
           tabBarLabel: '',
-          tabBarIcon: ({ focused }) =>
+          tabBarIcon: ({focused}) =>
             focused ? (
               <View style={styles.iconParent}>
                 <Icon name="book-open" size={28} color={color.primary} />
@@ -112,7 +105,7 @@ export default function MyTabs() {
         options={{
           headerShown: false,
           tabBarLabel: '',
-          tabBarIcon: ({ focused }) =>
+          tabBarIcon: ({focused}) =>
             focused ? (
               <View style={styles.iconParent}>
                 <Icon name="user" size={28} color={color.primary} />

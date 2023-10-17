@@ -1,8 +1,13 @@
 import {color} from '../../constants/Colors';
-import { fontPixel, heightPixel, pixelSizeHorizontal, pixelSizeVertical, widthPixel } from '../../constants/responiveStyles';
+import {
+  fontPixel,
+  heightPixel,
+  pixelSizeHorizontal,
+  pixelSizeVertical,
+  widthPixel,
+} from '../../constants/responiveStyles';
 
 const {StyleSheet} = require('react-native');
-
 
 export const styles = StyleSheet.create({
   main: {
@@ -33,24 +38,14 @@ export const styles = StyleSheet.create({
   startingDate: {
     fontSize: 13,
     fontWeight: '700',
-    color: color.third
+    color: color.third,
   },
 
   calenderMain: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // columnGap: 10,
-    // width: '100%'
   },
-
-  // firstPortion: {
-  //   width: 100
-  // },
-
-  // secondPortion: {
-  //   width: 100
-  // },
 
   fromText: {
     fontSize: fontPixel(16),
@@ -95,6 +90,7 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: color.third,
     textAlign: 'center',
+    fontFamily: 'Nunito-Bold'
   },
 
   headingParent: {
@@ -123,7 +119,8 @@ export const styles = StyleSheet.create({
     fontSize: fontPixel(18),
     fontWeight: '400',
     lineHeight: 24,
-    color: color.third
+    color: color.third,
+    fontFamily: 'Nunito-Regular'
   },
 
   container: {
@@ -142,6 +139,8 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: fontPixel(24),
     fontWeight: '400',
+    fontFamily: 'Nunito-Bold'
+
   },
 
   doneBtn: {
@@ -180,7 +179,7 @@ export const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    rowGap: 10
+    rowGap: 10,
   },
 
   notificationText: {
@@ -195,17 +194,20 @@ export const styles = StyleSheet.create({
     height: heightPixel(28),
     borderRadius: 10,
     alignSelf: 'flex-end',
-    marginRight: 20
+    marginRight: 20,
   },
 
   okBtnText: {
     color: '#ffffff',
     fontSize: fontPixel(18),
     fontWeight: '700',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 
   text: {
-    color: color.third
-  }
+    color: color.third,
+    fontFamily: 'Nunito-Bold',
+    fontSize: fontPixel(18),
+    fontWeight: '400'
+  },
 });

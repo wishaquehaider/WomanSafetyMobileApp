@@ -1,16 +1,18 @@
 import React from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Image, StatusBar } from 'react-native';
-import { color } from '../../constants/Colors';
-import WomanLogo from '../../assets/womanLogo.svg'
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
+import {color} from '../../constants/Colors';
+import WomanLogo from '../../assets/womanLogo.svg';
 
 const LoadingScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={color.primary} />
-      {/* <ActivityIndicator size="large" color="#007AFF" />
-      <Text>Loading...</Text> */}
-      <WomanLogo style={{...styles.Image, fill: 'white'}}  />
-      {/* <Image source={require('../../assets/womanLogo.png')}/> */}
+      <WomanLogo style={{...styles.Image, fill: 'white'}} />
       <Text style={styles.text}>Woman's Sefety</Text>
     </View>
   );
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: color.primary
+    backgroundColor: color.primary,
   },
   Image: {
     width: 165,
@@ -33,9 +35,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 35,
     fontWeight: '800',
-    color: 'white'
-  }
-
+    color: 'white',
+  },
 });
 
 export default LoadingScreen;

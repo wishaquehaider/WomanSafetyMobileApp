@@ -1,5 +1,5 @@
 import {color} from '../../constants/Colors';
-import { pixelSizeHorizontal } from '../../constants/responiveStyles';
+import {pixelSizeHorizontal} from '../../constants/responiveStyles';
 
 const {StyleSheet} = require('react-native');
 
@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
   main: {
     backgroundColor: color.secoundry,
     flex: 1,
-    // paddingHorizontal: 20
   },
 
   headingParent: {
@@ -15,7 +14,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingBottom: 50,
-    paddingHorizontal: 40
+    paddingHorizontal: 40,
   },
 
   heading: {
@@ -38,14 +37,12 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
     color: color.third,
-    // maxWidth: 270,
   },
 
   chatParent: {
     display: 'flex',
     flexDirection: 'row',
     columnGap: 10,
-    // paddingHorizontal: 20,
   },
 
   chatMain: {
@@ -53,17 +50,16 @@ export const styles = StyleSheet.create({
     rowGap: 10,
     paddingBottom: 90,
     paddingHorizontal: 40,
-    paddingRight: 80
+    paddingRight: 80,
   },
 
   inputBox: {
     backgroundColor: '#ffffff',
-    // position: 'relative',
     borderRadius: 10,
     paddingRight: pixelSizeHorizontal(50),
     paddingLeft: pixelSizeHorizontal(10),
     color: color.third,
-    lineHeight: 20
+    lineHeight: 20,
   },
 
   calenderImg: {
@@ -73,7 +69,7 @@ export const styles = StyleSheet.create({
   },
 
   message: {
-    color: color.third
+    color: color.third,
   },
 
   bottom: {
@@ -81,9 +77,8 @@ export const styles = StyleSheet.create({
   },
 
   inputBoxParent: {
-    paddingHorizontal: 20, 
+    paddingHorizontal: 20,
     position: 'relative',
-    bottom: 10
- 
-  }
+    bottom: 10,
+  },
 });

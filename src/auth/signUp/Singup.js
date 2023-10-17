@@ -1,9 +1,7 @@
 import {
   View,
   Text,
-  StatusBar,
   ScrollView,
-  ImageBackground,
   Image,
   TextInput,
   TouchableOpacity,
@@ -14,9 +12,8 @@ import {styles} from './SingupStyle';
 import {color} from '../../constants/Colors';
 import {useNavigation} from '@react-navigation/native';
 import * as Yup from 'yup';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Google from '../../assets/google.svg'
-import Facebook from '../../assets/facebook.svg'
+import Google from '../../assets/google.svg';
+import Facebook from '../../assets/facebook.svg';
 
 const Singup = () => {
   const navigate = useNavigation();
@@ -62,9 +59,7 @@ const Singup = () => {
       await validationSchema.validate(formData, {abortEarly: false});
       setLoader(true);
       PostData();
-      // navigate.navigate('Login');
     } catch (error) {
-      // Validation failed, display errors
       setLoader(false);
       const validationErrors = {};
       error.inner.forEach(err => {
@@ -76,46 +71,43 @@ const Singup = () => {
   };
 
   const PostData = async () => {
-    console.log(formData);
-    const responce = await fetch('https://woman-safety-server-crup.vercel.app/api/user', {
-      method: 'POST',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({
-        email: formData.email,
-        password: formData.password,
-        fullName: formData.fullName,
-      }),
-    });
+    const responce = await fetch(
+      'https://woman-safety-server-crup.vercel.app/api/user',
+      {
+        method: 'POST',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          fullName: formData.fullName,
+        }),
+      },
+    );
 
-    
     let res = await responce.json();
 
-    if(res.ok == false){
-      Toast.error(res.message)
+    if (res.ok == false) {
+      Toast.error(res.message);
     }
-    console.log('cked gurrenty',res);
     const token = res.token;
     const userData = JSON.stringify(res.user);
 
     if (responce.ok) {
-      setLoader(false)
+      setLoader(false);
 
-      Toast.success(res.message)
+      Toast.success(res.message);
 
       try {
-        // await AsyncStorage.setItem('mytoken',token);
-        // await AsyncStorage.setItem('userData',userData);
       } catch (error) {
-        setLoader(false)
-        Toast
+        setLoader(false);
+        Toast;
         console.error('Error storing data:', error);
       }
-    
 
       navigate.navigate('Login');
     } else {
-      setLoader(false)
-      Toast.error(res.message)
+      setLoader(false);
+      Toast.error(res.message);
     }
   };
 
@@ -176,31 +168,26 @@ const Singup = () => {
           <View style={styles.iconsMain}>
             <TouchableOpacity style={styles.iconParent}>
               <Google style={styles.icon} />
-              {/* <Image  source={require('../../assets/google.png')} /> */}
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconParent}>
               <Facebook style={styles.icon} />
-              {/* <Image  source={require('../../assets/facebook.png')} /> */}
             </TouchableOpacity>
-         
           </View>
 
           <View style={styles.lastParent}>
             <Text onPress={onPressAlreadyAccound} style={styles.lastText}>
               {' '}
-              Already Member? Login
+              Already Member? <Text style={styles.Login}> Login </Text>
             </Text>
             <TouchableOpacity
               disabled={loader}
               onPress={onPressRegister}
               style={styles.btn}>
               <Text style={styles.btnText}>
-                
                 {loader ? (
-                    <ActivityIndicator size="large" color={color.primary} />
+                  <ActivityIndicator size="large" color={color.primary} />
                 ) : (
                   <Text style={styles.btnText}>Register</Text>
-                  
                 )}
               </Text>
             </TouchableOpacity>

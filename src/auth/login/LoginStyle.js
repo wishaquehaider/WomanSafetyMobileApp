@@ -28,7 +28,8 @@ export const styles =StyleSheet.create({
         color: color.secoundry,
         fontSize: fontPixel(36),
         fontWeight: "700",
-        paddingBottom: pixelSizeVertical(30)
+        paddingBottom: pixelSizeVertical(30),
+        fontFamily: 'Nunito-Bold'
     },
 
     inputField: {
@@ -48,7 +49,10 @@ export const styles =StyleSheet.create({
 
     inputLable: {
         color: color.secoundry,
-        paddingLeft: pixelSizeHorizontal(5)
+        paddingLeft: pixelSizeHorizontal(5),
+        fontSize: fontPixel(14),
+        fontWeight: '400',
+        fontFamily: 'Nunito-Regular'
     },
 
     inputParent: {
@@ -106,19 +110,29 @@ export const styles =StyleSheet.create({
     btnText: {
         fontSize: fontPixel(24),
         fontWeight: '400',
-        color: color.third
+        color: color.third,
+        fontSize: fontPixel(24),
+        fontFamily: 'Nunito-Bold'
     },
 
     lastParent: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop: pixelSizeVertical(40)
+        paddingTop: pixelSizeVertical(40),
     },
 
     lastText: {
         color: color.secoundry,
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        fontSize: fontPixel(16),
+        fontWeight: '400',
+        fontFamily: 'Nunito-SemiBold'
+    },
+
+    register: {
+    fontWeight: '700',
+    fontFamily: 'Nunito-SemiBold'
     },
 
     scrollMian: {

@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React, {useContext, useState, useEffect} from 'react';
 import {styles} from './ProfileStyle';
 import Icon from 'react-native-vector-icons/Feather';
@@ -12,7 +6,7 @@ import {color} from '../../constants/Colors';
 import {useNavigation} from '@react-navigation/native';
 import {DataContext} from '../contextComp/ContextComp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {launchImageLibrary} from 'react-native-image-picker'; // Removed unnecessary import
+import {launchImageLibrary} from 'react-native-image-picker';
 import {PermissionsAndroid} from 'react-native';
 import {fontPixel, widthPixel} from '../../constants/responiveStyles';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
@@ -20,14 +14,12 @@ import LoadingScreen from '../loadingScreen/LoadingScreen';
 
 const Profile = () => {
   const navigate = useNavigation();
-  const {currentUser, updateUserDetails} = useContext(DataContext);
   const [userDetails, setUserDetails] = useState(null);
   const [userGmailData, setUserGmailData] = useState(null);
   const [ProfileImage, setProfileImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loader, setLoader] = useState(true);
 
-  //console.log('User Details', currentUser)
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -37,27 +29,18 @@ const Profile = () => {
         setUserGmailData(userData);
         setUserDetails(JSON.parse(customUser));
         setLoader(false);
-      } catch (error) {
-        console.log('Error getting data!', error);
-      }
+      } catch (error) {}
     };
     getUser();
   }, []);
 
-  // const {userDetailsGmail} = useContext(DataContext);
-
-
-
   const onPressLogout = async () => {
     try {
       await deltToken();
-      console.log('check user gmailData is true ===>',userGmailData);
-      if(userGmailData){
-        await GoogleSignin.signOut() ; // Sign out from Google
+      if (userGmailData) {
+        await GoogleSignin.signOut();
       }
-    navigate.navigate('Login');
-      
-      // Navigate to the Login screen
+      navigate.navigate('Login');
     } catch (error) {
       console.error(error);
     }
@@ -66,9 +49,9 @@ const Profile = () => {
   const deltToken = async () => {
     await AsyncStorage.removeItem('myToken');
     await AsyncStorage.removeItem('userData');
-    await AsyncStorage.removeItem('GmailData')
+    await AsyncStorage.removeItem('GmailData');
     await AsyncStorage.removeItem('profileImg');
-  }
+  };
 
   const requestGalleryPermission = async () => {
     try {
@@ -84,10 +67,8 @@ const Profile = () => {
       );
 
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        // Permission granted, launch the gallery
         pickImage();
       } else {
-        console.log('Gallery permission denied');
       }
     } catch (err) {
       console.warn(err);
@@ -103,12 +84,8 @@ const Profile = () => {
     launchImageLibrary(options, async response => {
       setLoading(false);
       if (response.didCancel) {
-        console.log('User cancelled image picker');
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
       } else {
-        // Display the selected image
-        console.log('Selected Image URI: ', response.uri);
         const uri = response.assets[0].uri;
         await AsyncStorage.setItem('profileImg', uri);
         setProfileImage(uri);
@@ -126,11 +103,6 @@ const Profile = () => {
     getProfile();
   }, []);
 
-  console.log('ProfileImage', ProfileImage);
-
-  console.log('userDetails', userDetails);
-  console.log('userGmailData', userGmailData);
-
   return (
     <>
       {loader ? (
@@ -140,25 +112,26 @@ const Profile = () => {
           <View style={styles.profileParent}>
             <Text style={styles.heading}>Profile</Text>
             <View style={styles.circleProfile}>
-              {userDetails ?
-                  <Image
+              {userDetails ? (
+                <Image
                   source={{uri: ProfileImage}}
                   style={{
                     width: widthPixel(155),
                     height: widthPixel(155),
                     borderRadius: 100,
                   }}
-                /> : 
+                />
+              ) : (
                 <Image
-                source={{uri: userGmailData.user.photo}}
-                style={{
-                  width: widthPixel(155),
-                  height: widthPixel(155),
-                  borderRadius: 100,
-                }}
-              />  
-            }
-          
+                  source={{uri: userGmailData.user.photo}}
+                  style={{
+                    width: widthPixel(155),
+                    height: widthPixel(155),
+                    borderRadius: 100,
+                  }}
+                />
+              )}
+
               <TouchableOpacity
                 onPress={requestGalleryPermission}
                 style={styles.editParent}>
@@ -175,14 +148,15 @@ const Profile = () => {
             <View>
               <Text style={styles.nameStyle}>Name</Text>
               <View style={styles.card}>
-              { userGmailData ? (
+                {userGmailData ? (
                   <Text style={styles.cardUserName}>
                     {userGmailData.user.name}
                   </Text>
                 ) : (
-                  <Text style={styles.cardUserName}>{userDetails.fullName}</Text>
+                  <Text style={styles.cardUserName}>
+                    {userDetails.fullName}
+                  </Text>
                 )}
-            
               </View>
             </View>
 
